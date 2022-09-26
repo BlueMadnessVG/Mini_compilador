@@ -11,7 +11,8 @@ enum TipoToken
     PalRes,
     Id,
     Num,
-    Sim
+    Sim,
+    text
 };
 
 //estrucutra de datos para el token
@@ -156,6 +157,19 @@ int comprobar_token()
                 car = fgetc(arch);
 
                 tipo_simbolo(token);
+            }
+            else if(ispunct(car) != 0 && car == '\"'){
+
+                char token[50] = "";
+                strncat(token, &car, 1);
+
+                //CICLO PARA RECORRER TODO EL CARACTER
+                while (car == '\"')
+                {
+                    car = fgetc(arch);
+                    strncat(token, &car, 1);
+                }
+
             }
             else{
                 tipo_simbolo(token);
