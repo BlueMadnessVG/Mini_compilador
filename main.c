@@ -63,7 +63,7 @@ void insertarnodo(struct TokenStruc token)
         actual -> der = nuevo;
         actual = nuevo;
     }
-    
+
 
 }
 
@@ -191,30 +191,40 @@ int comprobar_token()
         {
             char token[50] = "";
             strncat(token, &car, 1);
-
             car = fgetc(arch);
-            //CARACTERES CONJUNTOS == >= <= !=
-            if(ispunct(car) != 0 && car == '='){
+
+            //LINEAS DE TEXTO ENTRE ""
+            if (car == '\"' || car == '\''){
+
+                //CICLO PARA RECORRER TODO EL CARACTER
+                while (car != '\"' && car != '\'')
+                {
+                    strncat(token, &car, 1);
+                    car = fgetc(arch);
+                }
+                //GUARDA EL ULTIMO " O ' Y TOMA EL SIGUIENTE CARACTER
                 strncat(token, &car, 1);
                 car = fgetc(arch);
 
-                tipo_simbolo(token);
+                printf("%s", token);
+                printf("\n variable tipo texto plano\n");
+
+                //crear el nuevo token
+                crear_token("Tipo_Texto_plano", text, token, 0, 0, 0);
             }
-            else if(ispunct(car) != 0 && car == '\"'){
-
-                char token[50] = "";
-                strncat(token, &car, 1);
-
-                //CICLO PARA RECORRER TODO EL CARACTER
-                while (car == '\"')
-                {
-                    car = fgetc(arch);
-                    strncat(token, &car, 1);
-                }
-
-            }
+            //CARACTERES ESPECIALES
             else{
-                tipo_simbolo(token);
+
+                //CARACTERES CONJUSNTOS == >= <= !=
+                if(ispunct(car) != 0 && car == '='){
+                    strncat(token, &car, 1);
+                    car = fgetc(arch);
+
+                    tipo_simbolo(token);
+                }
+                else{
+                    tipo_simbolo(token);
+                }
             }
         }
         //IDENTIFICAMOS PALABRAS O NUMEROS
