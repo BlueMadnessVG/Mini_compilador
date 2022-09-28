@@ -1,6 +1,6 @@
 //CODIGO DE LECTURA DE ARCHIVOS EN C
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -25,6 +25,48 @@ struct TokenStruc
     int NoLin;
     int NoCol;
 };
+
+//estructura de datos para la lista enlazada
+
+struct nodo
+{
+    struct TokenStruc info;
+    //PUNTEROS
+    struct nodo *izq;
+    struct nodo *der;
+};
+
+//punto de inicio de la lista
+struct nodo *raiz;
+//punto actual de la lista
+struct nodo *actual;
+
+//METODO PARA INSERTAR UN NUEVO NODO A LA LISTA ENLAZADA
+void insertarnodo(struct TokenStruc token)
+{
+    struct nodo *nuevo;
+    //asigna un tamaño en memoria de tipo *nodo*
+    nuevo = malloc(sizeof(struct nodo));
+
+    nuevo -> info = token;
+    nuevo -> izq = NULL;
+    nuevo -> der = NULL;
+
+    if(raiz == NULL)
+    {
+        raiz = nuevo;
+        actual = nuevo;
+    }
+    else
+    {
+        nuevo -> izq = actual;
+        actual -> der = nuevo;
+        actual = nuevo;
+    }
+    
+
+}
+
 
 //variable goblal para leer el puntero del automata
 FILE *arch;
@@ -151,7 +193,7 @@ int comprobar_token()
             strncat(token, &car, 1);
 
             car = fgetc(arch);
-            //CARACTERES CONJUSNTOS == >= <= !=
+            //CARACTERES CONJUNTOS == >= <= !=
             if(ispunct(car) != 0 && car == '='){
                 strncat(token, &car, 1);
                 car = fgetc(arch);
@@ -196,7 +238,8 @@ int comprobar_token()
                 printf("\n variable tipo palabra reservada\n");
 
                 //crear el nuevo token
-                crear_token("Tipo_p-reserbada", PalRes, token, 0, 0, 0);
+                crear_token("Tipo_p-reservada", PalRes, token, 0, 0, 0);
+                //insertarnodo(token);
             }
             else if(tipo_id(token) == 1){
                 printf("\n variable tipo identificador\n");
