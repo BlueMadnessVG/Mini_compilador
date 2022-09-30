@@ -1,2 +1,2 @@
-var const hola;
-si(1>2)
+var joto hola ="hola";
+si (1 >= 2)

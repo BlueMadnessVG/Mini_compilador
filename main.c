@@ -56,11 +56,9 @@ void insertarnodo(struct TokenStruc token)
     {
         raiz = nuevo;
         actual = nuevo;
-       
     }
     else
     {
-        
         nuevo -> izq = actual;
         actual -> der = nuevo;
         actual = nuevo;
@@ -95,11 +93,15 @@ void imprimirlista(){
     aux=actual;
     while (aux!=NULL)
     {
+        printf("\n--DATOS DEL TOKEN--\n\n");
+        printf("LEXEMA ---> ");
         printf(aux->info.Lexema);
+        printf("\nTIPO DE TOKEN ---> ");
+        printf("%d", aux->info.Tipo);
         printf("\n");
         aux=aux->der;
     }
-    
+
 
 }
 
@@ -160,7 +162,7 @@ int tipo_numero(char token[50]){
                     punto = 1;
                 }
                 else{
-                    printf("\n no es valido");
+                    printf("no es valido");
                     return 0;
                 }
             }
@@ -223,11 +225,9 @@ int comprobar_token()
         {
             char token[50] = "";
             strncat(token, &car, 1);
-            printf("\n");
-
+            car = fgetc(arch);
             //LINEAS DE TEXTO ENTRE ""
-            if (car == '\"' || car == '\''){
-                car = fgetc(arch);
+            if (token[0] == '\"' || token[0] == '\''){
 
                 //CICLO PARA RECORRER TODO EL CARACTER
                 while (car != '\"' && car != '\'')
@@ -239,7 +239,6 @@ int comprobar_token()
                 strncat(token, &car, 1);
                 car = fgetc(arch);
 
-                printf("%s", token);
             //    printf("\n variable tipo texto plano\n");
 
                 //crear el nuevo token
@@ -247,21 +246,18 @@ int comprobar_token()
             }
             //CARACTERES ESPECIALES
             else{
-                car = fgetc(arch);
 
                 //CARACTERES CONJUSNTOS == >= <= !=
-                if(ispunct(car) != 0){
+                if(car == '='){
                     strncat(token, &car, 1);
                     car = fgetc(arch);
+
                 }
 
-                if(tipo_simbolo(token) == 1){
-                   // printf("\n varibale tipo simbolo\n");
-                }
-                else{
+                if (tipo_simbolo(token) != 1)
+                {
                     printf("\n ERROR EN EL TOKEN INGRESADO\n");
                 }
-
 
             }
         }
