@@ -1,2 +1,2 @@
-va.r const 1hola;
-si (1>>2)
+var const hola;
+si (1>2)

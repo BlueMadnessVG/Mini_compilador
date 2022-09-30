@@ -40,7 +40,7 @@ struct nodo
 struct nodo *raiz;
 //punto actual de la lista
 struct nodo *actual;
-
+struct nodo *aux;
 //METODO PARA INSERTAR UN NUEVO NODO A LA LISTA ENLAZADA
 void insertarnodo(struct TokenStruc token)
 {
@@ -62,8 +62,10 @@ void insertarnodo(struct TokenStruc token)
         nuevo -> izq = actual;
         actual -> der = nuevo;
         actual = nuevo;
+        aux=nuevo;
     }
-printf("%s",actual->info.Lexema);
+printf("%s nodo actual \n");
+printf(actual->info.Lexema);
     printf("\n");
     printf("%d", actual->info.Tipo);
     printf("\n");
@@ -71,6 +73,16 @@ printf("%s",actual->info.Lexema);
     printf("\n");
     printf("%d", actual->der);
 
+    printf("-------NODO ANTERIOR--------");
+    
+printf("%s nodo anterior\n");
+    printf(aux->info.Lexema);
+    printf("\n");
+    printf("%d", aux->info.Tipo);
+    printf("\n");
+    printf("%d", aux->izq);
+    printf("\n");
+    printf("%d", aux->der);
 }
 
 
@@ -84,7 +96,7 @@ int crear_token(char Nombre[80], enum TipoToken Tipo, char Lexema[80], int valor
     strcpy(new_token.Lexema, Lexema);
     new_token.Tipo = Tipo;
     new_token.Valor = valor;
-
+    insertarnodo(new_token);
     return 1;
 }
 
@@ -92,7 +104,7 @@ int crear_token(char Nombre[80], enum TipoToken Tipo, char Lexema[80], int valor
 int tipo_simbolo(char token[50]){
 
     int i;
-    printf("%s", token);
+
 
     if (strlen(token) == 2){
         const char *simbolo[4] = {">=", "<=", "!=", "=="};
@@ -250,7 +262,7 @@ int comprobar_token()
                     strncat(token, &car, 1);
                 }
             }
-            printf("%s", token);
+
 
             //IDENTIFICAMOS EL TIPO DE CARACTER
             if(tipo_palabra(token) == 1){
