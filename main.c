@@ -95,7 +95,6 @@ int tipo_simbolo(char token[50]){
             if(strcmp(token, simbolo[i]) == 0){
                 i = 4;
 
-                printf("\n varibale tipo simbolo\n");
                 crear_token("Tipo_sim", Sim, token, 0, 0, 0);
                 return 1;
             }
@@ -106,7 +105,6 @@ int tipo_simbolo(char token[50]){
         for(i=0 ; i < 13; i++){
             if(strcmp(token, simbolo[i]) == 0){
                 i = 13;
-                printf("\n varibale tipo simbolo\n");
                 crear_token("Tipo_sim", Sim, token, 0, 0, 0);
                 return 1;
             }
@@ -118,16 +116,16 @@ int tipo_simbolo(char token[50]){
 
 //AUTOMATA PARA NUMEROS
 int tipo_numero(char token[50]){
-
     int i, punto = 0;
     if(isdigit(token[0])){
         for(i = 1; i < strlen(token); i++){
             if(isdigit(token[i]) == 0){
+
                 if(token[i] == '.' && punto == 0 && (i+1) != strlen(token)){
                     punto = 1;
                 }
                 else{
-                    printf("no es valido");
+                    printf("\n no es valido");
                     return 0;
                 }
             }
@@ -136,7 +134,6 @@ int tipo_numero(char token[50]){
     else{
         return 0;
     }
-    return 1;
 }
 
 //AUTOMATA PARA IDENTIFICADORES
@@ -191,10 +188,11 @@ int comprobar_token()
         {
             char token[50] = "";
             strncat(token, &car, 1);
-            car = fgetc(arch);
+            printf("\n");
 
             //LINEAS DE TEXTO ENTRE ""
             if (car == '\"' || car == '\''){
+                car = fgetc(arch);
 
                 //CICLO PARA RECORRER TODO EL CARACTER
                 while (car != '\"' && car != '\'')
@@ -214,17 +212,23 @@ int comprobar_token()
             }
             //CARACTERES ESPECIALES
             else{
+                car = fgetc(arch);
 
                 //CARACTERES CONJUSNTOS == >= <= !=
                 if(ispunct(car) != 0 && car == '='){
+                    printf("%c", car);
                     strncat(token, &car, 1);
                     car = fgetc(arch);
+                }
 
-                    tipo_simbolo(token);
+                if(tipo_simbolo(token) == 1){
+                    printf("\n varibale tipo simbolo\n");
                 }
                 else{
-                    tipo_simbolo(token);
+                    printf("\n ERROR EN EL TOKEN INGRESADO\n");
                 }
+
+
             }
         }
         //IDENTIFICAMOS PALABRAS O NUMEROS
@@ -257,11 +261,14 @@ int comprobar_token()
                 //crear el nuevo token
                 crear_token("Tipo_id", Id, token, 0, 0, 0);
             }
-            else{
+            else if(tipo_numero(token) == 1){
                 printf("\n variable tipo numero\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_numero", Num, token, token, 0, 0);
+            }
+            else{
+                printf("\n ERROR EN EL TOKEN INGRESADO\n");
             }
         }
     }
