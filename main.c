@@ -56,17 +56,19 @@ void insertarnodo(struct TokenStruc token)
     {
         raiz = nuevo;
         actual = nuevo;
-        aux = actual;
+       
     }
     else
     {
-        aux = actual;
+        
         nuevo -> izq = actual;
         actual -> der = nuevo;
         actual = nuevo;
     }
 
-printf("\n-------NODO ACTUAL--------\n");
+/*printf("\n-------NODO ACTUAL--------\n");
+    printf("%p",actual);
+    printf("\n");
     printf(actual->info.Lexema);
     printf("\n");
     printf("%d", actual->info.Tipo);
@@ -76,6 +78,8 @@ printf("\n-------NODO ACTUAL--------\n");
     printf("%d", actual->der);
 
     printf("\n-------NODO ANTERIOR--------\n\n");
+     printf("%p",nuevo);
+    printf("\n");
     printf(aux->info.Lexema);
     printf("\n");
     printf("%d", aux->info.Tipo);
@@ -83,8 +87,21 @@ printf("\n-------NODO ACTUAL--------\n");
     printf("%d", aux->izq);
     printf("\n");
     printf("%d", aux->der);
+*/
+imprimirlista();
 }
 
+void imprimirlista(){
+    aux=actual;
+    while (aux!=NULL)
+    {
+        printf(aux->info.Lexema);
+        printf("\n");
+        aux=aux->der;
+    }
+    
+
+}
 
 //variable goblal para leer el puntero del automata
 FILE *arch;
@@ -223,7 +240,7 @@ int comprobar_token()
                 car = fgetc(arch);
 
                 printf("%s", token);
-                printf("\n variable tipo texto plano\n");
+            //    printf("\n variable tipo texto plano\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_Texto_plano", text, token, 0, 0, 0);
@@ -239,7 +256,7 @@ int comprobar_token()
                 }
 
                 if(tipo_simbolo(token) == 1){
-                    printf("\n varibale tipo simbolo\n");
+                   // printf("\n varibale tipo simbolo\n");
                 }
                 else{
                     printf("\n ERROR EN EL TOKEN INGRESADO\n");
@@ -266,20 +283,20 @@ int comprobar_token()
 
             //IDENTIFICAMOS EL TIPO DE CARACTER
             if(tipo_palabra(token) == 1){
-                printf("\n variable tipo palabra reservada\n");
+               // printf("\n variable tipo palabra reservada\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_p-reservada", PalRes, token, 0, 0, 0);
                 //insertarnodo(token);
             }
             else if(tipo_id(token) == 1){
-                printf("\n variable tipo identificador\n");
+               // printf("\n variable tipo identificador\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_id", Id, token, 0, 0, 0);
             }
             else if(tipo_numero(token) == 1){
-                printf("\n variable tipo numero\n");
+               // printf("\n variable tipo numero\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_numero", Num, token, token, 0, 0);
