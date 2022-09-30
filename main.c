@@ -221,8 +221,7 @@ int comprobar_token()
                 car = fgetc(arch);
 
                 //CARACTERES CONJUSNTOS == >= <= !=
-                if(ispunct(car) != 0 && car == '='){
-                    printf("%c", car);
+                if(ispunct(car) != 0){
                     strncat(token, &car, 1);
                     car = fgetc(arch);
                 }
