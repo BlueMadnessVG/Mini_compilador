@@ -155,10 +155,11 @@ int tipo_simbolo(char token[50]){
 int tipo_numero(char token[50]){
     int i, punto = 0;
     if(isdigit(token[0])){
+
         for(i = 1; i < strlen(token); i++){
             if(isdigit(token[i]) == 0){
 
-                if(token[i] == '.' && punto == 0 && (i+1) != strlen(token)){
+                if(strncmp(token[0], ".", 0) == 0 && punto == 0){
                     punto = 1;
                 }
                 else{
@@ -171,6 +172,8 @@ int tipo_numero(char token[50]){
     else{
         return 0;
     }
+
+    return 1;
 }
 
 //AUTOMATA PARA IDENTIFICADORES
@@ -191,7 +194,7 @@ int tipo_id(char token[50]){
     return 1;
 }
 
-//AUTOMATA PARA PALABRAS RESERBADAS
+//AUTOMATA PARA PALABRAS RESERVADAS
 int tipo_palabra(char token[50]){
 
     const char *palabras[14] = {"var", "const", "mientras", "fin", "si", "entero", "punto", "cadena", "funcion", "cuerpo", "lp", "pantalla", "teclado"};
@@ -212,6 +215,7 @@ int comprobar_token()
 {
 
     char car;
+                    char punto = ".";
     car = fgetc(arch);
 
     //CICLO PARA RECORRER TODO EL ARCHIVO
@@ -276,6 +280,23 @@ int comprobar_token()
                 }
             }
 
+            
+            if (isdigit(token[0]))
+            {
+                if (strncmp(car, punto, 0) == 0)
+                {
+                    strncat(token, &car, 1);
+                    car = fgetc(arch);
+                    printf("%c", car);
+                    while (isdigit(car))
+                    {
+                        if(isdigit(car)){
+                            strncat(token, &car, 1);
+                        }
+                                                car = fgetc(arch);
+                    }
+                }  
+            }
 
             //IDENTIFICAMOS EL TIPO DE CARACTER
             if(tipo_palabra(token) == 1){
@@ -292,7 +313,6 @@ int comprobar_token()
                 crear_token("Tipo_id", Id, token, 0, 0, 0);
             }
             else if(tipo_numero(token) == 1){
-               // printf("\n variable tipo numero\n");
 
                 //crear el nuevo token
                 crear_token("Tipo_numero", Num, token, token, 0, 0);

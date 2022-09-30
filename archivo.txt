@@ -1,2 +1,1 @@
-var joto hola ="hola";
-si (1 >= 2)
+var numero num=000.11.11;
