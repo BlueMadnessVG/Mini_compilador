@@ -159,11 +159,11 @@ int tipo_numero(char token[50]){
         for(i = 1; i < strlen(token); i++){
             if(isdigit(token[i]) == 0){
 
-                if(strncmp(token[0], ".", 0) == 0 && punto == 0){
+                int numero = (token[i] == '.');
+                if(numero == 1 && punto == 0 && (i+1) < strlen(token) ){
                     punto = 1;
                 }
                 else{
-                    printf("no es valido");
                     return 0;
                 }
             }
@@ -215,7 +215,6 @@ int comprobar_token()
 {
 
     char car;
-                    char punto = ".";
     car = fgetc(arch);
 
     //CICLO PARA RECORRER TODO EL ARCHIVO
@@ -280,22 +279,23 @@ int comprobar_token()
                 }
             }
 
-            
             if (isdigit(token[0]))
             {
-                if (strncmp(car, punto, 0) == 0)
+                int numero = (car == '.');
+                if (numero == 1)
                 {
                     strncat(token, &car, 1);
                     car = fgetc(arch);
-                    printf("%c", car);
+                    printf("entro");
                     while (isdigit(car))
                     {
+
                         if(isdigit(car)){
                             strncat(token, &car, 1);
+                            car = fgetc(arch);
                         }
-                                                car = fgetc(arch);
                     }
-                }  
+                }
             }
 
             //IDENTIFICAMOS EL TIPO DE CARACTER
