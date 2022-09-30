@@ -63,7 +63,13 @@ void insertarnodo(struct TokenStruc token)
         actual -> der = nuevo;
         actual = nuevo;
     }
-
+printf("%s",actual->info.Lexema);
+    printf("\n");
+    printf("%d", actual->info.Tipo);
+    printf("\n");
+    printf("%d", actual->izq);
+    printf("\n");
+    printf("%d", actual->der);
 
 }
 
