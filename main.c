@@ -64,7 +64,7 @@ void insertarnodo(struct TokenStruc token)
         actual = nuevo;
         aux=nuevo;
     }
-printf("%s nodo actual \n");
+printf("nodo actual \n");
 printf(actual->info.Lexema);
     printf("\n");
     printf("%d", actual->info.Tipo);
@@ -73,9 +73,9 @@ printf(actual->info.Lexema);
     printf("\n");
     printf("%d", actual->der);
 
-    printf("-------NODO ANTERIOR--------");
-    
-printf("%s nodo anterior\n");
+    printf("\n-------NODO ANTERIOR--------\n");
+
+printf("nodo anterior\n");
     printf(aux->info.Lexema);
     printf("\n");
     printf("%d", aux->info.Tipo);
