@@ -210,6 +210,29 @@ int tipo_palabra(char token[50]){
     return 0;
 }
 
+//AUTOMATA PARA TEXTO PLANO
+int tipo_textPlano(char token[50], char car)
+{
+    //CICLO PARA RECORRER TODO EL CARACTER
+    while (car != '\"' && car != '\'')
+    {
+        strncat(token, &car, 1);
+        car = fgetc(arch);
+
+        if(car == '\n' || car  == EOF){
+            car = fgetc(arch);
+            printf("\n ERROR EN EL TOKEN INGRESADO \n");
+            return 0;
+        }
+    }
+    //GUARDA EL ULTIMO " O ' Y TOMA EL SIGUIENTE CARACTER
+    strncat(token, &car, 1);
+
+    crear_token("Tipo_texto_plano", text, token, 0, 0, 0);
+
+    return 1;
+}
+
 //FUNCION PARA COMPROBAR EL TIPO DE TOKEN
 int comprobar_token()
 {
@@ -232,20 +255,13 @@ int comprobar_token()
             //LINEAS DE TEXTO ENTRE ""
             if (token[0] == '\"' || token[0] == '\''){
 
-                //CICLO PARA RECORRER TODO EL CARACTER
-                while (car != '\"' && car != '\'')
-                {
-                    strncat(token, &car, 1);
+                if(tipo_textPlano(token, car) == 1){
                     car = fgetc(arch);
                 }
-                //GUARDA EL ULTIMO " O ' Y TOMA EL SIGUIENTE CARACTER
-                strncat(token, &car, 1);
-                car = fgetc(arch);
-
-            //    printf("\n variable tipo texto plano\n");
-
+                else{
+                    car = fgetc(arch);
+                }
                 //crear el nuevo token
-                crear_token("Tipo_Texto_plano", text, token, 0, 0, 0);
             }
             //CARACTERES ESPECIALES
             else{
