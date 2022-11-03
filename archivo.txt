@@ -1,1 +1,8 @@
-var numero num=000.11.11;
+cuerpo {
+	const cadena hola;
+	lp();
+
+	mientras ( hola != 20 ){
+		pantalla ( hola, "20" );
+	}	
+}
