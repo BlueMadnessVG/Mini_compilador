@@ -631,13 +631,14 @@ int exprecion(int par) {
 
     const char *exp[2] = { "(", ")" };
     if( strcmp( aux->info.Lexema, exp[0] ) == 0 ){
-        par = 1;
+        par ++;
         aux = aux ->der;
         exprecion(par);
     }
     else if ( strcmp( aux->info.Lexema, exp[1] ) == 0){
-        if( par == 1 ){
-            par = 0;
+        printf("%d", par);
+        if( par > 0 ){
+            par--;
         }
         else {
            printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
@@ -656,6 +657,15 @@ int exprecion(int par) {
                     return 0;
                 }
             }
+            else if ( par > 0 ){
+                if(strcmp( aux->info.Lexema, exp[1] ) != 0){
+                    printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    return 0;
+                }
+                else{
+                    exprecion(par);
+                }
+            }
             else {
                 return 1;
             }
@@ -671,7 +681,7 @@ int exprecion(int par) {
         if ( aux->info.Tipo == 3 ) {
             if( operacion() == 16 ){
                 aux = aux ->der;
-                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 ){
+                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 || strcmp( aux->info.Lexema, exp[0] ) == 0 ){
                     exprecion(par);
                 }
                 else{
@@ -679,7 +689,11 @@ int exprecion(int par) {
                     return 0;
                 }
             }
-            else if ( par == 1 ){
+            else if ( strcmp( aux->info.Lexema, exp[0] ) == 0 ){
+                par++;
+                exprecion(par);
+            }
+            else if ( par > 0 ){
                 if(strcmp( aux->info.Lexema, exp[1] ) != 0){
                     printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
                     return 0;
