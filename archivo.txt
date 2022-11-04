@@ -1,13 +1,4 @@
 cuerpo {
 	const entero hola;
-	lp();
-
-	mientras(((hola != 20))){
-		pantalla ( hola, "20" );
-	}	
-si(){
-		pantalla ( "hola");
-}sino{
-		pantalla ( "hola");
-}
+	hola = "hola como estas" + (" ? " + " todo bien? " ;
 }

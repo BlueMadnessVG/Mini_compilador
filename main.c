@@ -636,7 +636,6 @@ int exprecion(int par) {
         exprecion(par);
     }
     else if ( strcmp( aux->info.Lexema, exp[1] ) == 0){
-        printf("%d", par);
         if( par > 0 ){
             par--;
         }
@@ -644,12 +643,11 @@ int exprecion(int par) {
            printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
             return 0;
         }
-
         aux = aux ->der;
         if( aux->info.Tipo == 3 ){
             if( operacion() == 16 ){
                 aux = aux ->der;
-                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 ){
+                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 || aux->info.Tipo == 4 ){
                     exprecion(par);
                 }
                 else{
@@ -676,12 +674,12 @@ int exprecion(int par) {
         }
 
     }
-    else if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 ) {
+    else if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 || aux->info.Tipo == 4 ) {
         aux = aux->der;
         if ( aux->info.Tipo == 3 ) {
             if( operacion() == 16 ){
                 aux = aux ->der;
-                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 || strcmp( aux->info.Lexema, exp[0] ) == 0 ){
+                if ( aux->info.Tipo == 1 || aux->info.Tipo == 2 || aux->info.Tipo == 4 || strcmp( aux->info.Lexema, exp[0] ) == 0 ){
                     exprecion(par);
                 }
                 else{
@@ -839,6 +837,33 @@ int s_mientras(){
     }
     return 0;
 }
+//IDENTIFICACION DE IGUALDAD DE VARIABLES
+int s_igualdad() {
+
+   if( aux->info.Tipo == 1 ){
+        aux = aux->der;
+        if( strcmp( aux->info.Lexema, "=" ) == 0 ){
+            aux = aux->der;
+            if( exprecion(0) == 1 ){
+                if( strcmp( aux->info.Lexema, ";" ) == 0 ){
+                    printf("\n !IGUALDAD CORRECTA! \n");
+                    aux = aux->der;
+                    return 1;
+                }
+                else {
+                    printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                }
+            }
+            else {
+                printf("\n Error en el exprecion de la igualdad, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            }
+        }
+        else{
+            printf("\n Falta igual ( '=' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+        }
+   }
+   return 0;
+}
 
 //IDENTIFICACION DE INSTRUCCIONES
 int s_instruccion() {
@@ -873,6 +898,9 @@ int s_instruccion() {
         s_instruccion();
     }
     else if ( s_mientras() == 1){
+        s_instruccion();
+    }
+    else if ( s_igualdad() == 1 ){
         s_instruccion();
     }
     else {
