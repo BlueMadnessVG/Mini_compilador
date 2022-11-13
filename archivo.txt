@@ -1,4 +1,4 @@
 cuerpo {
 	const entero hola;
-	hola = "hola como estas" + (" ? " + " todo bien? " ;
+	hola = "hola como estas" + (" ? " + " todo bien? " );
 }
