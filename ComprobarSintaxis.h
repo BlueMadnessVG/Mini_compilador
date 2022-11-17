@@ -77,36 +77,37 @@ int s_cuerpo(){
                 if( strcmp( aux->info.Lexema, cuerpo[2] ) == 0 ){
                     aux = aux ->der;
                     if( aux == NULL ){
-                        printf("\n CUEPOR DEL PROGRAMA CORRECTO \n");
+                        printf("\n CUERPO DEL PROGRAMA CORRECTO \n");
                     }
                     else {
                         errores++;
-                        printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Tienes un error en el cuerpo del programa, en linea: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
                     }
                 }
                 else{
                     errores++;
-                    printf("\n Falta laves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Falta laves ( } ) al final, en la linea: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
                 }
             }
             else {
                 errores++;
-                printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Tienes un error en el cuerpo del programa, en la linea: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
             }
         }
         else {
             errores++;
-            printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta laves ( { ) al final, en la linea: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
         }
     }
     else {
         errores++;
-        printf("\n Falta el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+        printf("\n Falta el cuerpo del programa, en la linea: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
     }
 
     if ( errores == 0 ){
         printf( "\n\n === SINTAXIS DEL PROGRAMA CORRECTA === \n" );
         printf( "\n Tu programa tiene: 0 errores \n", errores );
+        make_cuerpoExp(aux->info.Lexema,)
     }
     else {
         printf( "\n\n === ERROR DE SINTAXIS === \n" );
@@ -128,6 +129,9 @@ int comprobar_sintaxis(){
     }
 
 }
+
+//creacion del arbol sintáctico
+
 
 
 #endif // COMPROBARSINTAXIS_H_INCLUDED
