@@ -79,16 +79,16 @@ int s_cuerpo(){
                     if( strcmp( aux->info.Lexema, cuerpo[2] ) == 0 ){
                         aux = aux ->der;
                         if( aux == NULL ){
-                            printf("\n CUEPOR DEL PROGRAMA CORRECTO \n");
+                            printf("\n CUERPO DEL PROGRAMA CORRECTO \n");
                         }
                         else {
                             errores++;
-                            printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                            printf("\n Tienes un error en el cuerpo del programa, en linea: %d\n", aux->info.NoLin);
                         }
                     }
                     else{
                         errores++;
-                        printf("\n Falta llaves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Falta llave ( } ) al final, en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else {
@@ -98,17 +98,17 @@ int s_cuerpo(){
             }
             else {
                 errores++;
-                printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Falta llave ( { ) al final, en linea: %d\n", aux->info.NoLin);
             }
         }
         else {
             errores++;
-            printf("\n Falta el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta el cuerpo del programa, en linea: %d\n", aux->info.NoLin);
         }
     }
     else {
         errores++;
-        printf("\n Tienes un error en el cuerpo del programa, faltan llaves en el programa ( } ) del cuerpo del programa \n");
+        printf("\n Tienes un error en el cuerpo del programa, faltan llave en el programa ( } ) del cuerpo del programa \n");
     }
 
 
