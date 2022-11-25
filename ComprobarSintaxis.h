@@ -43,7 +43,7 @@ int s_instruccion() {
         s_instruccion();
     }
     else {
-        printf("asdas");
+        
         errores++;
 
         if( strcmp( aux -> info.Lexema, "}" ) != 0 ) {

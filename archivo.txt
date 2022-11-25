@@ -1,9 +1,14 @@
 cuerpo {
-	const cadena hola2 = "20";
+	const entero hola2 = 20;
+	var cadena operacion;
+	operacion=30.1+15/2+((3.4/2*(2.4)));
 	hola = "hola como estas" + (" ? " + " todo bien? " );
 	si(hola){
-		mientras(hola == 1){
+
+		mientras (hola == 1){
 			lp();
+			teclado(mensaje);
+			pantalla(hola);
 		}
 	}
 }

@@ -44,7 +44,7 @@ int s_constantes() {
                             return 1;
                         }
                         else {
-                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                           printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                         }
                     }
                     //igualdad de cadenas
@@ -56,11 +56,11 @@ int s_constantes() {
                             return 1;
                         }
                         else {
-                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                           printf("\n Falta punto y coma (;) en linea: %d", aux->info.NoLin );
                         }
                     }
                     else {
-                        printf("\n Error de iguldad, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Error de iguldad, en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else if( strcmp( aux->info.Lexema, ";" ) == 0 ) {
@@ -69,15 +69,15 @@ int s_constantes() {
                     return 1;
                 }
                 else {
-                   printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                   printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else{
-                printf("\n Error al reconoser un identificador, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error al reconocer un identificador, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Tipo de dato no valido, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Tipo de dato no valido, en linea: %d\n", aux->info.NoLin, aux->info.Lexema);
         }
     }
     return 0;
@@ -113,7 +113,7 @@ int s_variable() {
                             return 1;
                         }
                         else {
-                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                           printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                         }
                     }
                     //igualdad de cadenas
@@ -125,12 +125,12 @@ int s_variable() {
                             return 1;
                         }
                         else {
-                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                           printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                         }
 
                     }
                     else {
-                        printf("\n Error de iguldad, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Error de iguldad, en linea: %d\n", aux->info.NoLin);
                     }
 
                 }
@@ -141,15 +141,15 @@ int s_variable() {
 
                 }
                 else {
-                   printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                   printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else{
-                printf("\n Error al reconoser un identificador, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error al reconocer un identificador, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Tipo de dato no valido, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Tipo de dato no valido, en linea: %d\n", aux->info.NoLin);
         }
     }
     return 0;
@@ -174,19 +174,19 @@ int s_leer() {
                         return 1;
                     }
                     else{
-                        printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else {
-                    printf("\n Falta un parentesis ( ')' ), en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Falta un parentesis ( ')' ), en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Error al reconoser un identificador, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error al reconocer un identificador, en linea: %d\n", aux->info.NoLin);
             }
         }
         else {
-            printf("\n Falta un parentesis ( '(' ), en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta un parentesis ( '(' ), en linea: %d\n", aux->info.NoLin);
         }
     }
     return 0;
@@ -227,19 +227,19 @@ int s_escribir() {
                         return 1;
                     }
                     else{
-                        printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else {
-                  printf("\n Falta parentesis ( ')' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                  printf("\n Falta parentesis ( ')' ) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Error en los datos ingresados en pantalla, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error en los datos ingresados en pantalla, en linea: %d\n", aux->info.NoLin);
             }
         }
         else {
-            printf("\n Falta parentesis ( '(' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta parentesis ( '(' ) en linea: %d\n", aux->info.NoLin);
         }
     }
 
@@ -262,15 +262,15 @@ int s_limpiar() {
                     return 1;
                 }
                 else{
-                    printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-               printf("\n Falta parentesis ( ')' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+               printf("\n Falta parentesis ( ')' ) en linea: %d\n", aux->info.NoLin);
             }
         }
         else {
-            printf("\n Falta parentesis ( '(' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta parentesis ( '(' ) en linea: %d\n", aux->info.NoLin);
         }
     }
     return 0;
@@ -304,7 +304,7 @@ int exprecion(int par) {
             par--;
         }
         else {
-           printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+           printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin, aux->info.Lexema);
             return 0;
         }
         aux = aux ->der;
@@ -315,13 +315,13 @@ int exprecion(int par) {
                     exprecion(par);
                 }
                 else{
-                    printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
                     return 0;
                 }
             }
             else if ( par > 0 ){
                 if(strcmp( aux->info.Lexema, exp[1] ) != 0){
-                    printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
                     return 0;
                 }
                 else{
@@ -333,7 +333,7 @@ int exprecion(int par) {
             }
         }
         else {
-            printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
             return 0;
         }
 
@@ -347,7 +347,7 @@ int exprecion(int par) {
                     exprecion(par);
                 }
                 else{
-                    printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
                     return 0;
                 }
             }
@@ -357,7 +357,7 @@ int exprecion(int par) {
             }
             else if ( par > 0 ){
                 if(strcmp( aux->info.Lexema, exp[1] ) != 0){
-                    printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
                     return 0;
                 }
                 else{
@@ -369,7 +369,7 @@ int exprecion(int par) {
             }
         }
         else {
-            printf("\n Error en la exprecion, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Error en la expresion, en linea: %d\n", aux->info.NoLin);
             return 0;
         }
     }
@@ -399,7 +399,7 @@ int s_si() {
                                 return 1;
                             }
                             else{
-                                printf("\n Falta laves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                                printf("\n Falta llave ( } ) en linea: %d\n", aux->info.NoLin);
                             }
                         }
                         else {
@@ -407,19 +407,19 @@ int s_si() {
                         }
                     }
                     else {
-                       printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                       printf("\n Falta llave ( { ) en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else {
-                   printf("\n Falta parentesis ( ')' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                   printf("\n Falta parentesis ( ')' ) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Error en el exprecion de la condicon si, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error en el expresion de la condicion si, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Falta parentesis ( '(' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta parentesis ( '(' ) en linea: %d\n", aux->info.NoLin);
         }
     }
 
@@ -441,15 +441,15 @@ int s_sino() {
                     return 1;
                 }
                 else{
-                    printf("\n Falta laves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Falta llave ( } ) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Tienes un error en el la condicion sino, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Tienes un error en el la condicion sino, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Falta llaves ( '{' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta lllave ( '{' ) en linea: %d\n", aux->info.NoLin, aux->info.Lexema);
         }
     }
 
@@ -476,7 +476,7 @@ int s_mientras(){
                                 return 1;
                             }
                             else{
-                                printf("\n Falta laves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                                printf("\n Falta llave ( } ) en linea: %d\n", aux->info.NoLin);
                             }
                         }
                         else {
@@ -484,19 +484,19 @@ int s_mientras(){
                         }
                     }
                     else {
-                       printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                       printf("\n Falta llave ( { ) en linea: %d\n", aux->info.NoLin);
                     }
                 }
                 else {
-                   printf("\n Falta parentesis ( ')' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                   printf("\n Falta parentesis ( ')' ) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Error en el exprecion del ciclo mientras, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error en el expresion del ciclo mientras, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Falta parentesis ( '(' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta parentesis ( '(' ) en linea: %d\n", aux->info.NoLin);
         }
     }
     return 0;
@@ -515,15 +515,15 @@ int s_igualdad() {
                     return 1;
                 }
                 else {
-                    printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Falta punto y coma (;) en linea: %d\n", aux->info.NoLin);
                 }
             }
             else {
-                printf("\n Error en el exprecion de la igualdad, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Error en el expresion de la igualdad, en linea: %d\n", aux->info.NoLin);
             }
         }
         else{
-            printf("\n Falta igual ( '=' ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta igual ( '=' ) en linea: %d\n", aux->info.NoLin, aux->info.Lexema);
         }
    }
    return 0;
