@@ -1,4 +1,9 @@
 cuerpo {
-	const entero hola;
+	const cadena hola2 = "20";
 	hola = "hola como estas" + (" ? " + " todo bien? " );
+	si(hola){
+		mientras(hola == 1){
+			lp();
+		}
+	}
 }

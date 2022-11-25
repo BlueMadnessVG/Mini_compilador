@@ -7,13 +7,16 @@ int errores = 0;
 //IDENTIFICACION DE INSTRUCCIONES
 int s_instruccion() {
 
+
     //COMPARAMOS EL VALOR CON UN ;
     if ( aux == NULL ){
-
-        return 0;
+        s_cuerpo();
     }
     else if ( strcmp( aux -> info.Lexema, "}" ) == 0 ){
         return 1;
+    }
+    else if ( s_igualdad() == 1 ){
+        s_instruccion();
     }
     else if( s_variable() == 1 ){
         s_instruccion();
@@ -39,10 +42,8 @@ int s_instruccion() {
     else if ( s_mientras() == 1){
         s_instruccion();
     }
-    else if ( s_igualdad() == 1 ){
-        s_instruccion();
-    }
     else {
+        printf("asdas");
         errores++;
 
         if( strcmp( aux -> info.Lexema, "}" ) != 0 ) {
@@ -69,40 +70,47 @@ int s_cuerpo(){
 
     const char *cuerpo[3] = { "cuerpo", "{", "}" };
     int i;
-    if( strcmp(aux->info.Lexema, cuerpo[0]) == 0 ){
-        aux = aux -> der;
-        if( strcmp(aux->info.Lexema, cuerpo[1]) == 0 ){
-            aux =aux ->der;
-            if( s_instruccion() == 1 ){
-                if( strcmp( aux->info.Lexema, cuerpo[2] ) == 0 ){
-                    aux = aux ->der;
-                    if( aux == NULL ){
-                        printf("\n CUEPOR DEL PROGRAMA CORRECTO \n");
+    if( aux != NULL ){
+        if( strcmp(aux->info.Lexema, cuerpo[0]) == 0 ){
+            aux = aux -> der;
+            if( strcmp(aux->info.Lexema, cuerpo[1]) == 0 ){
+                aux =aux ->der;
+                if( s_instruccion() == 1 ){
+                    if( strcmp( aux->info.Lexema, cuerpo[2] ) == 0 ){
+                        aux = aux ->der;
+                        if( aux == NULL ){
+                            printf("\n CUEPOR DEL PROGRAMA CORRECTO \n");
+                        }
+                        else {
+                            errores++;
+                            printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        }
                     }
-                    else {
+                    else{
                         errores++;
-                        printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        printf("\n Falta llaves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
                     }
                 }
-                else{
+                else {
                     errores++;
-                    printf("\n Falta laves ( } ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                    printf("\n Tienes un error en el cuerpo del programa, falta una llave ( } ) \n");
                 }
             }
             else {
                 errores++;
-                printf("\n Tienes un error en el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
             }
         }
         else {
             errores++;
-            printf("\n Falta laves ( { ) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+            printf("\n Falta el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
         }
     }
     else {
         errores++;
-        printf("\n Falta el cuerpo del programa, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+        printf("\n Tienes un error en el cuerpo del programa, faltan llaves en el programa ( } ) del cuerpo del programa \n");
     }
+
 
     if ( errores == 0 ){
         printf( "\n\n === SINTAXIS DEL PROGRAMA CORRECTA === \n" );
@@ -122,10 +130,9 @@ int s_cuerpo(){
 int comprobar_sintaxis(){
 
     aux = raiz;
-    while( aux != NULL ){
-        //ENTRA AL AUTOMATA DEL CUERPO
-        s_cuerpo();
-    }
+
+    //ENTRA AL AUTOMATA DEL CUERPO
+    s_cuerpo();
 
 }
 

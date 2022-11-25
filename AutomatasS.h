@@ -49,10 +49,15 @@ int s_constantes() {
                     }
                     //igualdad de cadenas
                     else if ( tipo_dato == 2 && ( aux->info.Tipo == 2 || aux ->info.Tipo == 4 ) ) {
-                        printf("\n !DECLARACION DE CONSTANTES CORRECTA! \n");
                         aux = aux -> der;
-                        return 1;
-
+                       if( strcmp( aux->info.Lexema, ";" ) == 0 ) {
+                            printf("\n !DECLARACION DE CONSTANTES CORRECTA! \n");
+                            aux = aux->der;
+                            return 1;
+                        }
+                        else {
+                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        }
                     }
                     else {
                         printf("\n Error de iguldad, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
@@ -113,9 +118,15 @@ int s_variable() {
                     }
                     //igualdad de cadenas
                     else if ( tipo_dato == 2 && ( aux->info.Tipo == 2 || aux ->info.Tipo == 4 ) ) {
-                        printf("\n !DECLARACION DE VARIABLES CORRECTA! \n");
                         aux = aux -> der;
-                        return 1;
+                        if( strcmp( aux->info.Lexema, ";" ) == 0 ) {
+                            printf("\n !DECLARACION DE VARIABLES CORRECTA! \n");
+                            aux = aux->der;
+                            return 1;
+                        }
+                        else {
+                           printf("\n Falta punto y coma (;) al final, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                        }
 
                     }
                     else {
@@ -392,7 +403,7 @@ int s_si() {
                             }
                         }
                         else {
-                            printf("\n Tienes un error en el la condicion si, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                            printf("\n Tienes un error en el la condicion si, falta una llave ( } ) de la condicion si \n");
                         }
                     }
                     else {
@@ -469,7 +480,7 @@ int s_mientras(){
                             }
                         }
                         else {
-                            printf("\n Tienes un error en el ciclo mientras, en liena: %d, en el token: %s \n", aux->info.NoLin, aux->info.Lexema);
+                            printf("\n Tienes un error en el ciclo mientras, falta una llave ( } ) del ciclo mientras \n");
                         }
                     }
                     else {
